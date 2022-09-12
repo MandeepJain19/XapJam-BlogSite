@@ -1,0 +1,38 @@
+<%- include('header.ejs') %>	
+		
+<div class="journal">
+			<span>Create New Blog</span>
+		</div>
+		<hr id="navhr">
+		
+<div class="ui main text container segment" id="blogform">
+	<div class="ui huge header"> New Blog</div>
+	<form action="/xapjam/blogpost" method="POST" enctype="multipart/form-data" class="ui form">
+		<div class="field">
+			<label>Title:</label>
+			<input type="text" name="title" placeholder="Title" required/>
+		</div>
+		<div class="field">
+			<div >
+				<label>Upload:</label>
+				<input type="file" name="image"  required>
+			</div>
+		</div>
+		<div class="field">
+			<label>Tags</label>
+			<input type="radio" name="tags" value="Campus"  required> Campus<br>
+			<input type="radio" name="tags" value="Events"  required> Events<br>
+			<input type="radio" name="tags" value="Food"  required> Food<br>
+			<input type="radio" name="tags" value="Entertainment"  required> Entertainment
+		</div>
+		<div class="field">
+			<label>Blog Content:</label>
+			<textarea name="desc" placeholder="text goes here"  required> </textarea>
+		</div>
+		<div>
+			<input class="ui blue big button" type="submit" />
+		</div>
+	</form>
+</div>
+<%- include('footer.ejs') %>
+

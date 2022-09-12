@@ -1,0 +1,32 @@
+
+<%- include('header.ejs') %>
+	<div id="nav0">
+
+		<hr id="navhr">
+		<div class="ui center aligned page stackable five column grid" id="nav1">
+				  <div class="column"><a href="/xapjam"><div class="column">Home</div></a></div>
+				  <div class="column"><a href="#"><div class="column">Event</div></a></div>
+				  <div class="column"><a href="#"><div class="column">Food</div></a></div>
+				  <div class="column"><a href="#"><div class="column">Entertainment</div></a></div>
+				  <div class="column"><a href="/xapjam/campus"><div class="column">Campus</div></a>
+
+				  </div>
+			</div>
+		<hr id="navhr">
+		</div>
+		<br>
+<div class="ui main text container  segment border" id="dashboard">
+	<br>
+	
+	<% if(!currentUser){ %>
+		<a href="/xapjam/users/login" class="fluid ui blue button">Log In </a><br>
+		<a href="/xapjam/users/register" class="fluid ui green button">Sign Up </a><br>
+	<% } else{ %>
+		<h4>Hello <%= currentUser.username %> </h4><br>
+		<a href="/xapjam/users/logout" class="fluid ui red button">Log Out</a><br>
+		<a href="/xapjam/blogpost" class="fluid ui green button">Post Blog</a><br>
+		<% } %>
+</div>
+
+<%- include('footer.ejs') %>
+

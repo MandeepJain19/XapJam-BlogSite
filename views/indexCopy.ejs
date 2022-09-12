@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"/>
+		
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" type="text/css" >
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" type="text/css" >
+		<link rel="stylesheet" type="text/css" href="/stylesheets/index.css">
+	    <script type="text/JavaScript" src="../javascript/date.js" > </script> 
+		<script type="text/JavaScript" src="../" > </script>
+		<title>Xap Jam</title>
+	</head>
+<body>
+		<div class="ui center grid" id="header"> 
+			
+			<div class="H1 four wide column" id="head1" >
+
+					<div id="insidehead1" >
+						<span id="hindi"> सभी का स्वागत है  !!</span>
+						<br>Welcome To All !!
+					</div>
+				</div>
+			<div class="four wide column" id="head1">
+				 <div class="titleimg">
+					<a href="/xapjam">
+					<img class="ui tiny circular left floated image " src="/images/title.jfif" alt="xap jam title "/> <div id="title">Xap Jam</div>
+					</a>
+				 </div>
+				</div>
+			<div class="four wide column" id="head1">
+					<div id="insidehead1" class="date">
+					<script>document.write(date); </script><sup>th</sup>
+						<span><script>document.write(month); </script></span>
+						<br><span><script>document.write(year); </script></span>
+					</div>
+				</div>
+			</div>
+			
+			
+		<hr class="style-eight">
+		
+		<div class="journal">
+			<span>The Journal</span>
+		</div>
+		
+		
+		<div id="nav0">
+		<hr id="navhr">
+			<div class="ui stackable center four column grid" id="nav1">
+				  <div class="column"><a href="#"><div class="column">Event</div></a></div>
+				  <div class="column"><a href="#"><div class="column">Food</div></a></div>
+				  <div class="column"><a href="#"><div class="column">Entertainment</div></a></div>
+				  <div class="column"><a href="#"><div class="column">Campus</div></a></div>
+			</div>
+		<hr>
+		</div>
+		<br>
+		
+		<% blogs.forEach(function(blog){ %>
+		
+		<div class="ui stackable two column center aligned page grid" id="blog1">
+			<div class="column" id="imgBox">
+				<img class="ui medium rounded image" id="blogImg" src="./uploads/<%= blog.img %>" />
+			</div>
+			<div class="column" id="blogTitle" >
+				<h2 > <%= blog.title %></h2>
+				<div class="ui stackable two column grid" id="blogDesc">
+					<div class="column" id="textStyle">
+					<% var array=blog.desc.split(" "); %>
+					<% for(var i=0; i<60; i++){ %>
+					<% if(i==0){ %>
+					<big> <%= array[i] %></big>
+					<%} else{%>
+					<%= array[i] %>
+						<% }} %>
+					
+					</div>
+					<div class="column" id="textStyle">
+					<% for(var i=60; i<120; i++){ %>
+					<%= array[i] %>
+						<% } %>
+					</div>
+				</div>
+			</div>
+		</div>
+		<% }) %>
+		<br>
+		<br>
+		<!--<hr id="hrAfterBlog"> -->
+		<br>
+		<br>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
+		
+		<div class="container-fluid " id="blog2">
+  <div class="row">
+    <div class="col-md" >
+	<div class="thumbnail "id="imgBox2">
+      <img id="blogImg2" src="https://i.pinimg.com/236x/44/f2/92/44f292f3719fd235731596c268474669--cellphone-wallpaper-wallpaper-iphone.jpg"/> 
+	</div>
+	<div class="caption">
+			<span id="blogTitle2">Got this </span>
+	</div>
+	<div class="center aligned page" id="desc" >
+	<p>Photography is the art, application and practice of creating durable images by recording light or other electromagnetic radiation, either electronically by means of an image sensor, or chemically by means of a light-sensitive material such as photographic film]</p>
+	</div>
+    </div>
+    <div class="col-md" >
+     <div class="thumbnail "id="imgBox2">
+      <img id="blogImg2" src="https://i.pinimg.com/236x/44/f2/92/44f292f3719fd235731596c268474669--cellphone-wallpaper-wallpaper-iphone.jpg"/> 
+	</div>
+	<div class="caption">
+			<span id="blogTitle2">Got this </span>
+	</div>
+	<div class="description" id="desc" >
+	<p>Photography is the art, application and practice of creating durable images by recording light or other electromagnetic radiation, either electronically by means of an image sensor, or chemically by means of a light-sensitive material such as photographic film]</p>
+	</div>
+    </div>
+    <div class="col-md" >
+     <div class="thumbnail "id="imgBox2">
+      <img id="blogImg2" src="https://i.pinimg.com/236x/44/f2/92/44f292f3719fd235731596c268474669--cellphone-wallpaper-wallpaper-iphone.jpg"/> 
+	</div>
+	<div class="caption" id="blogTitle2">
+			<span >Got this </span>
+	</div>
+	<div class="description" id="desc" >
+	<p>Photography is the art, application and practice of creating durable images by recording light or other electromagnetic radiation, either electronically by means of an image sensor, or chemically by means of a light-sensitive material such as photographic film]</p>
+	</div>
+    </div>
+  </div>
+</div>
+
+<%- include('header.ejs') %>
+<!-- </body>
+</html> -->
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

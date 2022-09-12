@@ -1,0 +1,35 @@
+<%- include('header.ejs') %>
+
+<div class="ui main text container inverted segment" id="blogform">
+	<div class="ui huge header"><b>Edit</b> - <%= blog.title %></div>
+	
+	<form action="/xapjam/<%= blog._id %>?_method=PUT" method="POST" enctype="multipart/form-data" class="ui inverted form">
+		<div class="field">
+			<label  >Title:</label>
+			<input type="text" name="title" value="<%=blog.title %>"   placeholder="Title" required/>
+		</div>
+		<div class="field">
+			<div >
+				<label for="validationDefault02">Upload:</label>
+				<input type="file" value="<%= blog.img %>" name="image" accept="image/*" required>
+			</div>
+		</div>
+		<div class="field">
+			<label >Tags</label>
+			<input type="radio" name="tags" value="Campus" required> Campus<br>
+			<input type="radio" name="tags" value="Events" required> Events<br>
+			<input type="radio" name="tags" value="Food" required> Food<br>
+			<input type="radio" name="tags" value="Entertainment" required> Entertainment
+		</div>
+		<div class="field">
+			<label>Blog Content:</label>
+			<textarea name="desc" placeholder="text goes here" required><%= blog.desc %> </textarea>
+		</div>
+		<div>
+			<input class="ui blue big button" type="submit" />
+		</div>
+	</form>
+</div>
+
+
+<%- include("footer.ejs") %>

@@ -1,0 +1,9 @@
+when admin is logged in we are seen login option again 
+comments section need be checked =? done
+on homepage post is colliding from second in third so make a change on ui
+set-up campus, food entertainmentpages -> done
+chnage ui of header ->done 
+in show.ejs paragraph issue -> done
+diaplay category of blog on show.ejs  -> done
+add post created by that user on its dashboard
+make 1 hr colorfull => donr 

@@ -1,0 +1,6 @@
+# .gitignore 
+node_modules/*
+test.html
+testing.html
+new q.html
+date.js

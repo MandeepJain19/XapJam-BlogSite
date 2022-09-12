@@ -1,0 +1,57 @@
+<%- include('header.ejs') %>
+
+	<div class="journal">
+		<span>Campus Blogs</span>
+	</div>
+		
+			<div id="nav0">
+		<hr id="navhr">
+		<div class="ui center aligned page stackable five column grid" id="nav1">
+				  <div class="column"><a href="/xapjam"><div class="column">Home</div></a></div>
+				  <div class="column"><a href="/xapjam/events"><div class="column">Event</div></a></div>
+				  <div class="column"><a href="/xapjam/food"><div class="column">Food</div></a></div>
+				  <div class="column"><a href="/xapjam/entertainment"><div class="column">Entertainment</div></a></div>
+				  <div class="column"><a href="/xapjam/about"><div class="column">About</div></a></div>
+			</div>
+		<hr id="navhr">
+		</div>
+		<br>
+		
+		
+		
+	<div class="container" >
+		<div class="ui stackable three column grid">
+		<% blog.forEach(function(blog){ %>
+			<div class="column">
+				<div id="imgBox2">
+					<a href="/xapjam/<%= blog._id %>">
+						<img id="blogImg2" src="../uploads/<%= blog.img %>" class="ui medium rounded image segment"> 
+					</a>
+				</div>
+				<br>
+				<div >
+					<h4 class="titleFont"><%= blog.title %></h4>
+				</div>
+				<br>
+				<div id="blog2" class="container" >
+					<p id="bigDesc"><%- blog.desc.substring(0,150) %>.....</p>
+					<!-- <a href="/xapjam/<%= blog._id %>" class="ui black basic button" id="readButton">Read More</a> -->
+					<!-- Animated Button -->
+				<a href="/xapjam/<%= blog._id %>">
+					<div class="ui animated button"  id="readButton" tabindex="0">
+						<div class="visible content">Read More...</div>
+						<div class="hidden content">
+						  <i class="right arrow icon"></i>
+						</div>
+					  </div>
+					</a>
+				</div>
+				
+			</div>
+			
+			<%});%>
+		</div>
+		
+		
+
+<%- include('footer.ejs') %>

@@ -1,0 +1,96 @@
+<%- include('header.ejs') %>
+
+<div class="journal">
+		<span><%= blog.title %></span>
+</div>
+<div id="nav0">
+
+		<hr id="navhr">
+		<div class="ui center aligned page stackable five column grid" id="nav1">
+				  <div class="column"><a href="/xapjam"><div class="column">Home</div></a></div>
+				  <div class="column"><a href="/xapjam/events"><div class="column">Event</div></a></div>
+				  <div class="column"><a href="/xapjam/food"><div class="column">Food</div></a></div>
+				  <div class="column"><a href="/xapjam/entertainment"><div class="column">Entertainment</div></a></div>
+				  <div class="column"><a href="/xapjam/campus"><div class="column">Campus</div></a>
+
+				  </div>
+			</div>
+		<hr id="navhr">
+		</div>
+		<br>
+
+		<!-- Blog Author can delete and edit blog from here -->
+<div class="ui main text container " >
+	<div > 
+		<img class="ui fluid rounded centered segment image" src="../uploads/<%= blog.img %>"  />
+		<br>
+		<% if(currentUser){ %>
+		<% if(currentUser.username == blog.author ){ %>
+		<div>
+			<a href="/xapjam/<%= blog._id  %>/edit" class="ui orange button">Edit</a>
+		<form id="deleteForm" action="/xapjam/<%= blog._id %>?_method=DELETE" method="POST" >
+			<button class="ui red button"> Delete </button>
+		</form>
+		</div>
+		<% }} %>
+		<hr>
+		<a href="/xapjam/<%- blog.tags  %>" class="ui button"> <%- blog.tags  %> </a>
+		<hr>
+	</div>
+	
+	
+	<div id="showDesc">
+		<p>
+			<% let sp = blog.desc.split('\n') %>
+			<% sp.forEach(function(text){ %>
+				<p><%- text %></p>
+			<% }) %>
+		
+		</p>
+		
+	</div>
+	<br>
+	<div>
+	Author : <b><%= blog.author %></b>
+	</div>
+	<br>
+	
+<br>
+
+<hr>
+<br>
+
+<div class="well text-right" >
+	<div  id="comment">
+		<button class="ui inverted red button comment">Add Comment</button>
+	</div>
+	<hr>
+	<div  class="startHidden"> 
+		<form class="ui form" action="/xapjam/<%= blog._id %>/comment" method="POST">
+			<div class="field">
+				<input type="text" name="name" placeholder="Enter Name " required>
+				<input type="text" name="comment" placeholder="Comment Here.." required>
+			</div>
+			<button class="ui green button" type="submit">Post</button>
+		</form>
+	</div>
+	<hr>
+</div>
+
+<b>Comments...</b>
+<hr>
+	
+	<div>
+		<% blog.comment.forEach(function(comment){ %>
+	<strong> <%= comment.name %> :-  </strong>
+	<span> <%= comment.comment %> </span>
+	<hr>
+	<%});%>
+	</div>
+	
+</div>
+
+
+
+
+<%- include("footer.ejs") %>

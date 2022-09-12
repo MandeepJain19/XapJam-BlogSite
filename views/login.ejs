@@ -1,0 +1,32 @@
+
+<%- include('header.ejs') %>	
+	
+<div class="ui main text container segment" id="blogform">
+	<div class="ui huge header"> login </div>
+	<hr>
+	<form action="/xapjam/users/login" method="POST" class="ui form">
+		
+		<div class="field">
+			<div>
+				<label>Email:</label>
+			<input type="email" name="username" placeholder="Enter Email" />
+			</div>
+		</div>
+		<div class="field">
+			<div>
+				<label>Password:</label>
+			<input type="password" name="password" placeholder="Enter password" />
+			</div>
+		</div>
+		<div>
+			<input class="ui blue big button" type="submit" />
+		</div>
+		<br>
+		<div>
+			 <a class="ui green button" href="/xapjam/users/register" >Register</a>
+		</div>
+	</form>
+</div>
+
+<%- include('footer.ejs') %>
+
