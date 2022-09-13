@@ -11,6 +11,7 @@ var path = require("path");
 var multer = require("multer");
 var User = require("./models/user.js");
 var app = express();
+const port = process.env.port || 3636;
 
 //connecting Database
 mongoose.connect("mongodb://localhost/xapjamDB",{useNewUrlParser: true, useUnifiedTopology: true });
@@ -402,6 +403,6 @@ function isLoggedIn(req, res, next){
 //Server Config
 // --------------------------------------------------------------------------------------
 
-app.listen("3636", function(){
-	console.log("Xap server start on 3636");
+app.listen(port, function(){
+	console.log('Xapjam server start on ${port}');
 });
