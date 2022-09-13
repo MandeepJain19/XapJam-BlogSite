@@ -11,7 +11,7 @@ var path = require("path");
 var multer = require("multer");
 var User = require("./models/user.js");
 var app = express();
-const port = process.env.port || 3636;
+const port = process.env.PORT || 3636;
 
 //connecting Database
 mongoose.connect("mongodb://localhost/xapjamDB",{useNewUrlParser: true, useUnifiedTopology: true });
