@@ -14,8 +14,8 @@ var app = express();
 const port = process.env.PORT || 3636;
 
 //connecting Database
-mongoose.connect("mongodb://localhost/xapjamDB",{useNewUrlParser: true, useUnifiedTopology: true });
-
+//mongoose.connect("mongodb://localhost/xapjamDB",{useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect("mongodb+srv://mandeepjain:8982152230@cluster0.woay3rs.mongodb.net/?retryWrites=true&w=majority",{useNewUrlParser: true, useUnifiedTopology: true });
 
 // Comment Schema
 var commentSchema = mongoose.Schema({
@@ -404,5 +404,5 @@ function isLoggedIn(req, res, next){
 // --------------------------------------------------------------------------------------
 
 app.listen(port, function(){
-	console.log('Xapjam server start on ${port}');
+	console.log(`Xapjam server start on  ${port}`);
 });
