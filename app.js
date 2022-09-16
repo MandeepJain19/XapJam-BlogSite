@@ -13,10 +13,11 @@ var User = require("./models/user.js");
 var favicon = require('serve-favicon');
 var app = express();
 const port = process.env.PORT || 3636;
-
+const dotenv = require('dotenv');
+dotenv.config();
 //connecting Database
-mongoose.connect("mongodb://localhost/xapjamDB",{useNewUrlParser: true, useUnifiedTopology: true });
-//mongoose.connect("mongodb+srv://mandeepjain:8982152230@cluster0.woay3rs.mongodb.net/?retryWrites=true&w=majority",{useNewUrlParser: true, useUnifiedTopology: true });
+//mongoose.connect("mongodb://localhost/xapjamDB",{useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGOCONN,{useNewUrlParser: true, useUnifiedTopology: true });
 
 // Comment Schema
 var commentSchema = mongoose.Schema({
@@ -43,8 +44,6 @@ var blogSchema = mongoose.Schema({
 });
 var blog = mongoose.model("blog",blogSchema);
 // --------------------------------------------------------------------------------------
-
-
 //Multer Config 
 //use to upload images 
 // --------------------------------------------------------------------------------------
@@ -58,7 +57,16 @@ var storage = multer.diskStorage({
 });
  //setting storage var for multer
 var upload = multer({ storage: storage });
+//--------------------------------------------------------------------------------------
+//Cloudinary
+//--------------------------------------------------------------------------------------
+const cloudinary = require('cloudinary').v2;
 
+cloudinary.config({
+	cloud_name : process.env.CLOUD_NAME,
+	api_key : process.env.CLOUDINARY_API_KEY,
+	api_secret : process.env.CLOUDINARY_API_SECRET
+})
 // --------------------------------------------------------------------------------------
 app.use(require("express-session")({
 	secret: "Xavier Xavier Xavier",
@@ -90,32 +98,6 @@ app.use(function(req, res, next){
 	res.locals.success = req.flash("success");
 	next();
 });
-//--------------------------------------------------------------------------------------
-//Cloudinary
-//--------------------------------------------------------------------------------------
-const cloudinary = require('cloudinary').v2;
-const dotenv = require('dotenv');
-dotenv.config();
-
-cloudinary.config({
-	cloud_name : process.env.CLOUD_NAME,
-	api_key : process.env.CLOUDINARY_API_KEY,
-	api_secret : process.env.CLOUDINARY_API_SECRET
-})
-
-// exports.uploads = (file, folder) => {
-// 	return new Promise(resolve => {
-// 		cloudinary.uploader.upload(file, (result) =>{
-// 			resolve({
-// 				url:result.url,
-// 				id:result.public_id
-// 			})
-// 		},{
-// 			resource_type: "auto",
-// 			folder
-// 		})
-// 	})
-// }
 // --------------------------------------------------------------------------------------
 //Root Route Main page
 // --------------------------------------------------------------------------------------
