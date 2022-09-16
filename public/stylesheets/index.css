@@ -90,7 +90,6 @@ hr.style-eight:after {
 	text-align:center;
 	font-family:Times New Roman;
 	font-size:30px;
-	font-weight:;
 }
 
 /* BlogPost form style */
@@ -154,10 +153,7 @@ hr.style-eight:after {
 		padding-right:16px;
 		}
 		
-	/* p::first-letter { */
-  /* font-size: 200%; */
-  /* color:#000000; */
-/* }	 */
+	
    #bigDesc::first-letter {
   font-size: 200%;
   color:#000000;
@@ -165,7 +161,7 @@ hr.style-eight:after {
 	
 	#blogTitle2{
 	font-size:25px;
-	font-family:Modern No. 20;
+	font-family:"Modern No. 20";
 	text-align:left;
 	padding-left:62px;
 	}
@@ -179,7 +175,7 @@ hr.style-eight:after {
 	img:hover {
   transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
-	}
+	
 	
 	/* Show Page*/
 	
@@ -206,25 +202,13 @@ hr.style-eight:after {
 		display:inline;
 	}
 	/* dashboard */
-	#dashboardparent{
-		
-	}
 	#dashboard{
-	
 		width:40%;
-		
 	}
-	
-/* Extra small devices (phones, 600px and down) */
-/*@media only screen and (max-width: 600px) {
-  .H1{
-		
-  }
-}*/
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
-/*@media only screen and (min-width: 600px) {
-  body {
-    background-color: lavender;
-  }
-}*/
+	/*footer*/
+	.foot{
+		font-size: 18px;
+		font-family: Georgia, 'Times New Roman', Times, serif;
+		text-align: center;
+	}

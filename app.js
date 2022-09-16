@@ -10,12 +10,13 @@ var methodOverride = require("method-override");
 var path = require("path");
 var multer = require("multer");
 var User = require("./models/user.js");
+var favicon = require('serve-favicon');
 var app = express();
 const port = process.env.PORT || 3636;
 
 //connecting Database
-//mongoose.connect("mongodb://localhost/xapjamDB",{useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.connect("mongodb+srv://mandeepjain:8982152230@cluster0.woay3rs.mongodb.net/?retryWrites=true&w=majority",{useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect("mongodb://localhost/xapjamDB",{useNewUrlParser: true, useUnifiedTopology: true });
+//mongoose.connect("mongodb+srv://mandeepjain:8982152230@cluster0.woay3rs.mongodb.net/?retryWrites=true&w=majority",{useNewUrlParser: true, useUnifiedTopology: true });
 
 // Comment Schema
 var commentSchema = mongoose.Schema({
@@ -78,12 +79,43 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());//save user object into session n encode it 
 passport.deserializeUser(User.deserializeUser());//decode the user save in session and check 
 
+
+//--------------------------------------------------------------------------------------
+//browser icon
+//--------------------------------------------------------------------------------------
+app.use(favicon('./public/images/title.jfif'));
+
 app.use(function(req, res, next){
 	res.locals.error = req.flash("error");
 	res.locals.success = req.flash("success");
 	next();
 });
+//--------------------------------------------------------------------------------------
+//Cloudinary
+//--------------------------------------------------------------------------------------
+const cloudinary = require('cloudinary').v2;
+const dotenv = require('dotenv');
+dotenv.config();
 
+cloudinary.config({
+	cloud_name : process.env.CLOUD_NAME,
+	api_key : process.env.CLOUDINARY_API_KEY,
+	api_secret : process.env.CLOUDINARY_API_SECRET
+})
+
+// exports.uploads = (file, folder) => {
+// 	return new Promise(resolve => {
+// 		cloudinary.uploader.upload(file, (result) =>{
+// 			resolve({
+// 				url:result.url,
+// 				id:result.public_id
+// 			})
+// 		},{
+// 			resource_type: "auto",
+// 			folder
+// 		})
+// 	})
+// }
 // --------------------------------------------------------------------------------------
 //Root Route Main page
 // --------------------------------------------------------------------------------------
@@ -114,30 +146,40 @@ app.get("/xapjam/blogpost", isLoggedIn, function(req,res){
 //Route handelling Post form data
 // --------------------------------------------------------------------------------------
 app.post("/xapjam/blogpost", upload.single("image"), function(req,res){
+	console.log("hit here");
 	const file = req.file
+	console.log(req.file);
   if (!file) {
     req.flash("error", "Please check you image")
     res.redirect("/xapjam");
   }else{
-		var newBlog = {
-				title: req.body.title,
-				img: req.file.filename,
-				tags: req.body.tags,
-				desc: req.body.desc,
-				author: req.user.username
-			};	
-		// make this entry in database
-		blog.create(newBlog,function(err,data){
-			if(err)
-			{
-				req.flash("error","Something went wrong");
-				res.redirect("/xapjam");
-			}
-			else{
-				req.flash("success", "Blog Posted")
-				res.redirect("/xapjam");
-			}
+		cloudinary.uploader.upload(file.path,function(err,result){
+			if(err) res.redirect("/xapjam");
+				var newBlog = {
+					title: req.body.title,
+					img: result.url,
+					tags: req.body.tags,
+					desc: req.body.desc,
+					author: req.user.username
+				};	
+			// make this entry in database
+			blog.create(newBlog,function(err,data){
+				if(err)
+				{
+					console.log(err);
+					req.flash("error","Something went wrong");
+					res.redirect("/xapjam");
+				}
+				else{
+					console.log(data);
+					req.flash("success", "Blog Posted")
+					res.redirect("/xapjam");
+				}
+			})
 		})
+
+		
+
 		}
 	});
 	

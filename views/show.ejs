@@ -22,7 +22,7 @@
 		<!-- Blog Author can delete and edit blog from here -->
 <div class="ui main text container " >
 	<div > 
-		<img class="ui fluid rounded centered segment image" src="../uploads/<%= blog.img %>"  />
+		<img class="ui fluid rounded centered segment image" src="<%= blog.img %>"  />
 		<br>
 		<% if(currentUser){ %>
 		<% if(currentUser.username == blog.author ){ %>
@@ -62,9 +62,8 @@
 
 <div class="well text-right" >
 	<div  id="comment">
-		<button class="ui inverted red button comment">Add Comment</button>
+		<button class="ui inverted red button comment">Add Comment</button><br>
 	</div>
-	<hr>
 	<div  class="startHidden"> 
 		<form class="ui form" action="/xapjam/<%= blog._id %>/comment" method="POST">
 			<div class="field">
@@ -80,14 +79,31 @@
 <b>Comments...</b>
 <hr>
 	
-	<div>
+	<!-- <div>
 		<% blog.comment.forEach(function(comment){ %>
 	<strong> <%= comment.name %> :-  </strong>
 	<span> <%= comment.comment %> </span>
 	<hr>
 	<%});%>
-	</div>
+	</div> -->
 	
+	<div class="ui comments">
+		<% blog.comment.forEach(function(comment){ %>
+		<div class="comment">
+		  <a class="avatar">
+			<img src="/images/panda.png">
+		  </a>
+		  <div class="content">
+			<a class="author"><%= comment.name %></a>
+			<div class="text">
+				<%= comment.comment %>
+			</div>
+		  </div>
+		</div>
+		<hr>
+		<%});%>
+	  </div>
+	  
 </div>
 
 
